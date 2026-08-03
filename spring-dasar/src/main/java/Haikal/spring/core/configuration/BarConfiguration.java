@@ -1,4 +1,4 @@
-package Haikal.spring.core;
+package Haikal.spring.core.configuration;
 
 import Haikal.spring.core.data.Bar;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package Haikal.spring.core;
+package Haikal.spring.core.configuration;
 
 import Haikal.spring.core.data.Foo;
 import org.springframework.context.annotation.Bean;
