@@ -1,6 +1,8 @@
 package Haikal.spring.core;
 
+import Haikal.spring.core.repository.CategoryRepository;
 import Haikal.spring.core.repository.ProductRepository;
+import Haikal.spring.core.service.CategoriService;
 import Haikal.spring.core.service.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,5 +36,13 @@ public class ComponentTest {
         ProductRepository productRepository = applicationContext.getBean(ProductRepository.class);
 
         Assertions.assertSame(productRepository,productService.getProductRepository());
+    }
+
+    @Test
+    void testSetterDependencyInjection() {
+        CategoriService categoriService = applicationContext.getBean(CategoriService.class);
+        CategoryRepository categoryRepository = applicationContext.getBean(CategoryRepository.class);
+
+        Assertions.assertSame(categoryRepository, categoriService.getCategoryRepository());
     }
 }
