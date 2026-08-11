@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {
         "Haikal.spring.core.repository",
         "Haikal.spring.core.service",
+        "Haikal.spring.core.configuration",
 })
 
 public class ComponentConfiguration {
