@@ -1,5 +1,6 @@
 package Haikal.spring.core;
 
+import Haikal.spring.core.data.MultiFoo;
 import Haikal.spring.core.repository.CategoryRepository;
 import Haikal.spring.core.repository.CustomerRepository;
 import Haikal.spring.core.repository.ProductRepository;
@@ -58,4 +59,11 @@ public class ComponentTest {
         Assertions.assertSame(normalCustomerRepository, customerService.getNormalCustomerRepository());
         Assertions.assertSame(premiumCustomerRepository, customerService.getPremiumCustomerRepository());
     }
+
+    @Test
+    void testObjectProvider() {
+        MultiFoo multiFoo = applicationContext.getBean(MultiFoo.class);
+        Assertions.assertEquals(3, multiFoo.getFoos().size());
+    }
 }
+
