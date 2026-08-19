@@ -2,6 +2,7 @@
 
     import Haikal.spring.core.Listener.LoginAgainSuccessListener;
     import Haikal.spring.core.Listener.LoginSuccessListener;
+    import Haikal.spring.core.Listener.UserListener;
     import Haikal.spring.core.service.UserService;
     import org.junit.jupiter.api.BeforeEach;
     import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@
         @Import({
                 UserService.class,
                 LoginSuccessListener.class,
-                LoginAgainSuccessListener.class
+                LoginAgainSuccessListener.class,
+                UserListener.class
         })
         public static class TestConfiguration{
 
