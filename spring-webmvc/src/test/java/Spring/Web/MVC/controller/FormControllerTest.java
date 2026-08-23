@@ -9,6 +9,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.print.attribute.standard.Media;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -20,6 +22,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class FormControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
+    @Test
+    void createPerson() throws Exception {
+        mockMvc.perform(
+                post("/form/person")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "haikal")
+                        .param("birthDate", "2026-08-23")
+                        .param("address", "Indonesia")
+        ).andExpectAll(
+                status().isOk(),
+                content().string(Matchers.containsString("Success Create Person with name : haikal, " +
+                        "birthDate : 2026-08-23, " +
+                        "address : Indonesia"))
+        );
+
+    }
 
     @Test
     void formHello() throws Exception{
