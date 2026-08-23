@@ -8,6 +8,7 @@
     import org.springframework.web.bind.annotation.GetMapping;
     import org.springframework.web.bind.annotation.RequestMapping;
     import org.springframework.web.bind.annotation.RequestMethod;
+    import org.springframework.web.bind.annotation.RequestParam;
 
     import java.io.IOException;
     import java.util.Objects;
@@ -18,10 +19,9 @@
         private HelloService helloService;
 
         @GetMapping(path = "hello")
-        public void HelloWorld(HttpServletResponse response, HttpServletRequest request) throws IOException {
-            String name = request.getParameter("name");
+        public void HelloWorld(@RequestParam (name = "name",required = false ) String name, HttpServletResponse response ) throws IOException {
+
             String responseBody = helloService.hello(name);
             response.getWriter().println(responseBody);
-
         }
     }
