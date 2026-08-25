@@ -1,0 +1,18 @@
+POST http://localhost:8181/api/person
+Content-Type: application/json
+Accept: application/json
+
+{
+  "fristName" : "haikal",
+  "middleNmae" : "fras",
+  "lastName" : "tiawan",
+  "email" : "haikal@example.com",
+  "phone" : "1234567789",
+  "hobbies" : ["Coding", "Gamind", "Reading"],
+  "socialMedias": [
+    {
+      "name" : "Facebook",
+      "location" : "facebook.com"
+    }
+  ]
+}
