@@ -32,11 +32,8 @@ class PersonControllerTest {
         mockMvc.perform(
                 post("/person")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .param("firstName" , "haikal")
                         .param("middlleName", "fras")
                         .param("lastName", "tiawan")
-                        .param("email", "haikal@example.com")
-                        .param("phone", "123456789")
                         .param("address.street", "jalan belum jadi")
                         .param("address.city", "jakarta")
                         .param("address.country", "Indonesia")
@@ -50,11 +47,8 @@ class PersonControllerTest {
                         .param("socialMedias[1].location", "Instagram.com")
 
         ).andExpectAll(
-                status().isOk(),
-                content().string(Matchers.containsString("Success create Person haikal fras tiawan " +
-                        "with email haikal@example.com and phone 123456789 " +
-                        "with address jalan belum jadi, jakarta, Indonesia, 12345"
-                        ))
+                status().isBadRequest(),
+                content().string(Matchers.containsString("You Send invalid data"))
         );
 
     }
