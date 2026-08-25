@@ -56,4 +56,27 @@ class PersonApiControllerTest {
                 content().json(jsonRequest)
         );
     }
+
+    @Test
+    void createPersonValidationError() throws Exception {
+        CreatePersonRequest request = new CreatePersonRequest();
+        request.setMiddlleName("fras");
+        request.setLastName("tiawan");
+        request.setPhone("123456789");
+        request.setHobbies(List.of("Coding", "Gaming", "Reading"));
+        request.setSocialMedias(new ArrayList<>());
+        request.getSocialMedias().add(new CreateSocialMediaRequest("Facebook", "facebook.com"));
+        request.getSocialMedias().add(new CreateSocialMediaRequest("Instagram", "instagram.com"));
+
+        String jsonRequest = objectMapper.writeValueAsString(request);
+
+        mockMvc.perform(
+                post("/api/person")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+        ).andExpectAll(
+                status().isBadRequest()
+        );
+    }
 }
