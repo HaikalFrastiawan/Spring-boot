@@ -2,6 +2,7 @@ package Spring.Web.MVC.controller;
 
 import Spring.Web.MVC.model.CreatePersonRequest;
 import Spring.Web.MVC.model.CreateSocialMediaRequest;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -76,7 +77,8 @@ class PersonApiControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .content(jsonRequest)
         ).andExpectAll(
-                status().isBadRequest()
+                status().isBadRequest(),
+                content().string(Matchers.containsString("Validation Error"))
         );
     }
 }
