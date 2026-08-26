@@ -9,8 +9,10 @@
     import org.springframework.web.bind.annotation.RequestMapping;
     import org.springframework.web.bind.annotation.RequestMethod;
     import org.springframework.web.bind.annotation.RequestParam;
+    import org.springframework.web.servlet.ModelAndView;
 
     import java.io.IOException;
+    import java.util.Map;
     import java.util.Objects;
 
     @Controller
@@ -23,5 +25,13 @@
 
             String responseBody = helloService.hello(name);
             response.getWriter().println(responseBody);
+        }
+
+        @GetMapping(path = "/web/hello")
+        public ModelAndView hello(@RequestParam(name = "name", required = false) String name){
+            return new ModelAndView("Hello ", Map.of(
+                    "title", "Belajar view",
+                    "name", name
+            ));
         }
     }

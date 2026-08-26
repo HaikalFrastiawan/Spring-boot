@@ -45,4 +45,14 @@ public class HelloControllerTest {
                 status().isMethodNotAllowed()
         );
     }
+
+    void helloView() throws Exception {
+        mockMVC.perform(
+                get("/web/hello").queryParam("name", "Haikal")
+        ).andExpectAll(
+                status().isOk(),
+                content().string(Matchers.containsString("Belajar view")),
+                content().string(Matchers.containsString("Hello Haikal"))
+        );
+    }
 }
