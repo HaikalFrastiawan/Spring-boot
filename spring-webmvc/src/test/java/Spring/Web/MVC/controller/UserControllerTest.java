@@ -24,10 +24,19 @@ class UserControllerTest {
     public void getUser() throws Exception{
         mockMvc.perform(
                 get("/user/current")
-                        .sessionAttr("user", new User("haikal"))
+                        .sessionAttr(   "user", new User("haikal"))
         ).andExpectAll(
                 status().isOk(),
                 content().string(Matchers.containsString("hello haikal"))
+        );
+    }
+
+    @Test
+    public void getUserInvalid() throws Exception{
+        mockMvc.perform(
+                get("/user/current")
+        ).andExpectAll(
+                status().is3xxRedirection()
         );
     }
 }
