@@ -29,6 +29,9 @@
 
         @GetMapping(path = "/web/hello")
         public ModelAndView hello(@RequestParam(name = "name", required = false) String name){
+            if (Objects.isNull(name)){
+                return new ModelAndView("redirect:/web/hello?name=Guest");
+            }
             return new ModelAndView("Hello ", Map.of(
                     "title", "Belajar view",
                     "name", name

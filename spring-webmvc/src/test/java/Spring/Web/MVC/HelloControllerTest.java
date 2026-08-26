@@ -55,4 +55,12 @@ public class HelloControllerTest {
                 content().string(Matchers.containsString("Hello Haikal"))
         );
     }
+
+    void helloViewRedirect() throws Exception {
+        mockMVC.perform(
+                get("/web/hello")
+        ).andExpectAll(
+                status().is3xxRedirection()
+        );
+    }
 }
