@@ -19,9 +19,16 @@ class CategoryServiceTest {
     }
 
     @Test
-    void Failed(){
+    void Failed() {
         assertThrows(RuntimeException.class, () -> {
             categoryService.test();
+        });
+    }
+
+    @Test
+    void Programatic() {
+        assertThrows(RuntimeException.class, () -> {
+            categoryService.createCategoris();
         });
     }
 }
