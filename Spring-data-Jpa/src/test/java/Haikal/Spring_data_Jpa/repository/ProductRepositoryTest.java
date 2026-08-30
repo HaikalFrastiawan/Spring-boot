@@ -5,6 +5,7 @@ import Haikal.Spring_data_Jpa.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -46,4 +47,14 @@ class ProductRepositoryTest {
         assertEquals("Apple iphone 14", product.get(0).getName());
         assertEquals("Apple iphone 13", product.get(1).getName());
     }
+    @Test
+    void Sort() {
+
+        Sort sort = Sort.by(Sort.Order.desc("id"));
+        List<Product> product = productRepository.findAllByCategory_Name("Gadget Murah", sort);
+        assertEquals(2, product.size());
+        assertEquals("Apple iphone 13", product.get(0).getName());
+        assertEquals("Apple iphone 14", product.get(1).getName());
+    }
+
 }
