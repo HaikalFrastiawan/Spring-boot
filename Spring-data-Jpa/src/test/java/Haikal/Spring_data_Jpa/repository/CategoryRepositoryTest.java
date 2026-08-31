@@ -4,6 +4,7 @@ import Haikal.Spring_data_Jpa.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.support.TransactionOperations;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ class CategoryRepositoryTest {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+
 
     @Test
     void Insert() {
