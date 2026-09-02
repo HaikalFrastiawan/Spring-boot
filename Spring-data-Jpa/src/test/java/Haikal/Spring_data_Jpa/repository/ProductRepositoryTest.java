@@ -148,8 +148,26 @@ class ProductRepositoryTest {
     @Test
     void namedQuery() {
         Pageable pageable = PageRequest.of(0,1);
-        List<Product> products = productRepository.searchProductUsingName("Apple Iphone 14");
+        List<Product> products = productRepository.searchProductUsingName("Apple Iphone 14", pageable);
         assertEquals(1, products.size());
         assertEquals("Apple Iphone 14", products.get(0).getName());
+    }
+
+    @Test
+    void searchProduct() {
+        Pageable pageable = PageRequest.of(0, 1, Sort.by(Sort.Order.desc("id")));
+        Page<Product> products = productRepository.searchProduct("%Iphone%", pageable);
+        assertEquals(1, products.getContent().size());
+
+        assertEquals(0, products.getNumber());
+        assertEquals(2, products.getTotalPages());
+        assertEquals(2, products.getTotalElements());
+
+        products = productRepository.searchProduct("%Gadget%", pageable);
+        assertEquals(1, products.getContent().size());
+
+        assertEquals(0, products.getNumber());
+        assertEquals(2, products.getTotalPages());
+        assertEquals(2, products.getTotalElements());
     }
 }
